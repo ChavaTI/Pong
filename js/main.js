@@ -102,6 +102,26 @@
 
 })();
 
+//Objeto Ball
+(function() {
+  self.Ball = function(x, y, width, height, board) {
+    this.x = x;
+    this.y = y;
+    this.width = width;
+    this.height = height;
+    this.kind = 'circle'
+    this.board = board;
+    this.board.ball = this;
+    console.log(this.board.ball);
+  }
+
+  self.Ball.prototype = {
+
+
+  }
+
+
+})();
 
 window.addEventListener('load', main);
 
@@ -111,10 +131,8 @@ function main() {
   var board = new Board(800, 400);
   var bar = new Bar(20, 100, 30, 100, board);
   var bar2 = new Bar(750, 100, 30, 100, board);
-  console.log(bar2);
-  console.log(bar);
+  var ball = new Ball(750-20,100,30,100,board);
   var canvas = document.getElementById('canvas');
   var view = new BoardView(canvas, board);
-  console.log(view);
   view.draw();
 }
