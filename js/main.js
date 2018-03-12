@@ -39,7 +39,9 @@
 
   self.BoardView.prototype = {
     draw : function(){
-      for (var i = 0; i < this.board.elements.length; i++) {
+      //console.log(this.board.elements.length);
+      // Por alguna extraña razón si uso el ciclo normal se cicla todo
+      for (var i = this.board.elements.length; i >=0 ; i--) {
         var el = this.board.elements[i];
 
         draw2(this.ctx,el);
