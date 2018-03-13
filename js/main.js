@@ -60,7 +60,7 @@
           break;
         case 'circle':
           console.log(element.kind);
-          ctx.arc(360,170,20,0,(Math.PI/180)*360,true);
+          ctx.arc(element.x,element.y,element.radio,0,(Math.PI/180)*360,true);
           ctx.fill();
           break;
 
@@ -109,11 +109,10 @@
 
 //Objeto Ball
 (function() {
-  self.Ball = function(x, y, width, height, board) {
+  self.Ball = function(x, y, radio, board) {
     this.x = x;
     this.y = y;
-    this.width = width;
-    this.height = height;
+    this.radio = radio;
     this.kind = 'circle'
     this.board = board;
     this.board.ball = this;
@@ -136,7 +135,7 @@ function main() {
   var board = new Board(800, 400);
   var bar = new Bar(20, 100, 30, 100, board);
   var bar2 = new Bar(750, 100, 30, 100, board);
-  var ball = new Ball(750-20,100,30,100,board);
+  var ball = new Ball(360,200,30,board);
   var canvas = document.getElementById('canvas');
   var view = new BoardView(canvas, board);
   view.draw();
