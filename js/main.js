@@ -58,6 +58,11 @@
         case 'rectangle':
           ctx.fillRect(element.x, element.y, element.width, element.height);
           break;
+        case 'circle':
+          console.log(element.kind);
+          ctx.arc(360,170,20,0,(Math.PI/180)*360,true);
+          ctx.fill();
+          break;
 
 
       }
@@ -112,7 +117,7 @@
     this.kind = 'circle'
     this.board = board;
     this.board.ball = this;
-    console.log(this.board.ball);
+
   }
 
   self.Ball.prototype = {
