@@ -59,7 +59,6 @@
           ctx.fillRect(element.x, element.y, element.width, element.height);
           break;
         case 'circle':
-          console.log(element.kind);
           ctx.arc(element.x,element.y,element.radio,0,(Math.PI/180)*360,true);
           ctx.fill();
           break;
@@ -168,5 +167,6 @@ window.requestAnimationFrame(controller);
 function controller() {
 
   view.draw();
+  window.requestAnimationFrame(controller);
   //window.requestAnimationFrame(controller); // Se usa recursividad para animar constantemente
 }
