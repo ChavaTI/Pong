@@ -115,7 +115,10 @@ var canvas = document.getElementById('canvas');
 var view = new BoardView(canvas, board);
 
 //Eventos
+
+
 document.addEventListener('keydown',function(ev){
+  ev.preventDefault(); //Para que no se mueva el scroll
   if (ev.keyCode == 38) {
     bar.up();
   }
@@ -123,13 +126,21 @@ document.addEventListener('keydown',function(ev){
     bar.down();
   }
 
+  else if (ev.keyCode == 87) {
+    bar2.up();
+  }
+  else if (ev.keyCode == 83) {
+    bar2.down();
+  }
+
   console.log(bar.toString());
 
 });
 
-window.addEventListener('load', main);
-
+//window.addEventListener('load', main); No se necesita ya que usamos  requestAnimationFrame
+window.requestAnimationFrame(controller);
 // Funcion principal
-function main() {
+function controller() {
   view.draw();
+  window.requestAnimationFrame(controller); // Se usa recursividad para animar constantemente
 }
