@@ -135,6 +135,7 @@
 var board = new Board(800, 400);
 var bar = new Bar(20, 100, 30, 100, board);
 var bar2 = new Bar(750, 100, 30, 100, board);
+var ball = new Ball(360, 200, 20, board);
 var canvas = document.getElementById('canvas');
 var view = new BoardView(canvas, board);
 
@@ -165,6 +166,7 @@ document.addEventListener('keydown',function(ev){
 window.requestAnimationFrame(controller);
 // Funcion principal
 function controller() {
+
   view.draw();
-  window.requestAnimationFrame(controller); // Se usa recursividad para animar constantemente
+  //window.requestAnimationFrame(controller); // Se usa recursividad para animar constantemente
 }
