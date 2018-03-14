@@ -13,6 +13,7 @@
   self.Board.prototype = {
     get elements() {
       var elements = this.bars;
+      console.log(this.ball);
       elements.push(this.ball);
       return elements;
     }
@@ -41,9 +42,9 @@
     draw: function() {
       //console.log(this.board.elements.length);
       // Por alguna extraña razón si uso el ciclo normal se cicla todo
-      for (var i = this.board.elements.length; i >= 0; i--) {
+      var limite = this.board.elements.length; // Esta variable se cicla
+      for (var i = limite; i >= 0; i--) {
         var el = this.board.elements[i];
-
         draw2(this.ctx, el);
       }
 
@@ -53,7 +54,6 @@
 
 
   function draw2(ctx, element) {
-    if (element !== null && element.hasOwnProperty('kind')) {
       switch (element.kind) {
         case 'rectangle':
           ctx.fillRect(element.x, element.y, element.width, element.height);
@@ -65,7 +65,7 @@
 
 
       }
-    }
+
 
 
 
@@ -157,16 +157,14 @@ document.addEventListener('keydown',function(ev){
     bar2.down();
   }
 
-  console.log(bar.toString());
+
 
 });
 
-//window.addEventListener('load', main); No se necesita ya que usamos  requestAnimationFrame
-window.requestAnimationFrame(controller);
+window.addEventListener('keydown', controller); //No se necesita ya que usamos  requestAnimationFrame
+//window.requestAnimationFrame(controller);
 // Funcion principal
 function controller() {
-
   view.draw();
-  window.requestAnimationFrame(controller);
   //window.requestAnimationFrame(controller); // Se usa recursividad para animar constantemente
 }
