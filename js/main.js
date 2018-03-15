@@ -55,8 +55,9 @@
     },
 
     play: function(){
-      view.clean();
-      view.draw();
+      this.clean();
+      this.draw();
+      this.board.ball.move();
     }
 
   }
@@ -68,8 +69,10 @@
           ctx.fillRect(element.x, element.y, element.width, element.height);
           break;
         case 'circle':
+          ctx.beginPath();
           ctx.arc(element.x,element.y,element.radio,0,(Math.PI/180)*360,true);
           ctx.fill();
+          ctx.closePath();
           break;
 
 
@@ -127,11 +130,18 @@
     this.kind = 'circle'
     this.board = board;
     this.board.ball = this;
+    this.speedX = 3;
+    this.speedY = 0;
+    this.direction = 1;
 
   }
 
   self.Ball.prototype = {
+      move: function(){
+        this.x += (this.speedX * this.direction);
+        this.y += (this.speedY);
 
+      }
 
   }
 
@@ -141,9 +151,9 @@
 //Variables
 
 var board = new Board(800, 400);
-var bar = new Bar(20, 100, 30, 100, board);
-var bar2 = new Bar(750, 100, 30, 100, board);
-var ball = new Ball(360, 200, 20, board);
+var bar = new Bar(20, 100, 40, 100, board);
+var bar2 = new Bar(750, 100, 40, 100, board);
+var ball = new Ball(350, 100, 10, board);
 var canvas = document.getElementById('canvas');
 var view = new BoardView(canvas, board);
 
