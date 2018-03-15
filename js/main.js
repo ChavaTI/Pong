@@ -55,9 +55,11 @@
     },
 
     play: function(){
-      this.clean();
-      this.draw();
-      this.board.ball.move();
+      if (this.board.playing) {
+        this.clean();
+        this.draw();
+        this.board.ball.move();
+      }
     }
 
   }
@@ -161,19 +163,28 @@ var view = new BoardView(canvas, board);
 
 
 document.addEventListener('keydown',function(ev){
-  ev.preventDefault(); //Para que no se mueva el scroll
+
   if (ev.keyCode == 38) {
+    ev.preventDefault(); //Para que no se mueva el scroll
     bar.up();
   }
   else if (ev.keyCode == 40) {
+    ev.preventDefault(); //Para que no se mueva el scroll
     bar.down();
   }
 
   else if (ev.keyCode == 87) {
+    ev.preventDefault(); //Para que no se mueva el scroll
     bar2.up();
   }
   else if (ev.keyCode == 83) {
+    ev.preventDefault(); //Para que no se mueva el scroll
     bar2.down();
+  }
+  else if (ev.keyCode == 32){
+    ev.preventDefault(); //Para que no se mueva el scroll
+    board.playing = !board.playing;
+
   }
 
 
@@ -183,6 +194,7 @@ document.addEventListener('keydown',function(ev){
 //window.addEventListener('keydown', controller); //No se necesita ya que usamos  requestAnimationFrame
 window.requestAnimationFrame(controller);
 // Funcion principal
+view.draw(); // Para que dibuje por primera vez
 function controller() {
   view.play();
   window.requestAnimationFrame(controller); // Se usa recursividad para animar constantemente
