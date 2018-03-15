@@ -38,6 +38,11 @@
   }
 
   self.BoardView.prototype = {
+    clean: function(){
+      this.ctx.clearRect(0,0,this.board.width,this.board.height);
+    },
+
+
     draw: function() {
       //console.log(this.board.elements.length);
       // Por alguna extraña razón si uso el ciclo normal se cicla todo
@@ -47,6 +52,11 @@
         draw2(this.ctx, el);
       }
 
+    },
+
+    play: function(){
+      view.clean();
+      view.draw();
     }
 
   }
@@ -160,10 +170,10 @@ document.addEventListener('keydown',function(ev){
 
 });
 
-window.addEventListener('keydown', controller); //No se necesita ya que usamos  requestAnimationFrame
-//window.requestAnimationFrame(controller);
+//window.addEventListener('keydown', controller); //No se necesita ya que usamos  requestAnimationFrame
+window.requestAnimationFrame(controller);
 // Funcion principal
 function controller() {
-  view.draw();
-  //window.requestAnimationFrame(controller); // Se usa recursividad para animar constantemente
+  view.play();
+  window.requestAnimationFrame(controller); // Se usa recursividad para animar constantemente
 }
