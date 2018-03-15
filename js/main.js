@@ -12,8 +12,7 @@
 
   self.Board.prototype = {
     get elements() {
-      var elements = this.bars;
-      console.log(this.ball);
+      var elements = this.bars.map(function(bar){return bar;});
       elements.push(this.ball);
       return elements;
     }
@@ -42,7 +41,7 @@
     draw: function() {
       //console.log(this.board.elements.length);
       // Por alguna extraña razón si uso el ciclo normal se cicla todo
-      var limite = this.board.elements.length; // Esta variable se cicla
+      var limite = this.board.elements.length-1; // Esta variable se cicla
       for (var i = limite; i >= 0; i--) {
         var el = this.board.elements[i];
         draw2(this.ctx, el);
